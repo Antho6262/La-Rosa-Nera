@@ -1,4 +1,4 @@
-name: Vérification semaine The Roolio Family
+name: Vérification semaine La Rosa Nera
 
 on:
   schedule:
@@ -22,5 +22,5 @@ jobs:
       - name: Vérifier / créer la semaine active
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          FIREBASE_DB_URL: "https://klan-nostrad-default-rtdb.europe-west1.firebasedatabase.app"
+          FIREBASE_DB_URL: "https://sombra-del-jaguar-default-rtdb.firebaseio.com"
         run: node .github/scripts/check-semaine.js
