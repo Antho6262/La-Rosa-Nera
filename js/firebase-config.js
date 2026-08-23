@@ -115,6 +115,17 @@ function nowHHMM() {
 function uid() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 }
+/* Libellé d'une semaine sous forme "Semaine du JJ/MM au JJ/MM", calculé
+   depuis ses dates réelles (debut/fin) plutôt que le nom stocké — garantit
+   un affichage cohérent partout même si la semaine a été nommée à la main. */
+function libelleSemaine(s) {
+  if (!s) return "";
+  if (s.debut && s.fin) {
+    const fmt = ts => new Intl.DateTimeFormat("fr-FR", { timeZone: "Europe/Paris", day: "2-digit", month: "2-digit" }).format(new Date(ts));
+    return "Semaine du " + fmt(s.debut) + " au " + fmt(s.fin);
+  }
+  return s.nom || "";
+}
 /* IMPORTANT : ne jamais utiliser snap.forEach seul (bug si pas d'index) —
    toujours repasser par Object.entries(snap.val() || {}) */
 function entries(val) {

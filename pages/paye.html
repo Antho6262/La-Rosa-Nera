@@ -44,7 +44,7 @@ function renderContent() {
 function renderSemainesSelect() {
   SEMAINES = entries(RAW.semaines).map(([id, s]) => ({ id, ...s })).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
   const sel = document.getElementById("selSemaine");
-  sel.innerHTML = SEMAINES.map(s => `<option value="${s.id}">${s.nom}${s.bloquee ? " (bloquée)" : " (active)"}</option>`).join("");
+  sel.innerHTML = SEMAINES.map(s => `<option value="${s.id}">${libelleSemaine(s)}${s.bloquee ? " (bloquée)" : " (active)"}</option>`).join("");
   if (!SEMAINE_SEL || !SEMAINES.find(s => s.id === SEMAINE_SEL.id)) {
     SEMAINE_SEL = SEMAINES.find(s => s.bloquee) || SEMAINES[0] || null;
   } else {

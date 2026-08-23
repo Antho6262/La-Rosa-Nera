@@ -36,14 +36,14 @@ function majSemaines(snap) {
     if (ACTIVE_WEEK) toast("Semaine active mise à jour : " + ACTIVE_WEEK.nom);
   }
   const lbl = document.getElementById("weekLabel");
-  if (lbl) lbl.textContent = ACTIVE_WEEK ? `Semaine active : ${ACTIVE_WEEK.nom}${ACTIVE_WEEK.bloquee ? " (bloquée — créez une nouvelle semaine dans Admin)" : ""}` : "Aucune semaine active — créez-en une dans Admin → Semaines pour pouvoir enregistrer des actions.";
+  if (lbl) lbl.textContent = ACTIVE_WEEK ? `Semaine active : ${libelleSemaine(ACTIVE_WEEK)}${ACTIVE_WEEK.bloquee ? " (bloquée — créez une nouvelle semaine dans Admin)" : ""}` : "Aucune semaine active — créez-en une dans Admin → Semaines pour pouvoir enregistrer des actions.";
   remplirFiltSemaine();
   if (!VIEW_WEEK) subscribeActionsTable();
 }
 
 function remplirFiltSemaine() {
   const sel = document.getElementById("filtSemaine");
-  sel.innerHTML = ALL_SEMAINES.map(s => `<option value="${s.id}">${s.nom}${s.bloquee ? " (bloquée)" : ""}</option>`).join("");
+  sel.innerHTML = ALL_SEMAINES.map(s => `<option value="${s.id}">${libelleSemaine(s)}${s.bloquee ? " (bloquée)" : ""}</option>`).join("");
   sel.value = VIEW_WEEK ? VIEW_WEEK.id : (ACTIVE_WEEK ? ACTIVE_WEEK.id : "");
 }
 

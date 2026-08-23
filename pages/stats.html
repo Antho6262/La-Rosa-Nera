@@ -89,7 +89,7 @@ function recalcDerived() {
   const selSemaine = document.getElementById("selSemaine");
   const prevSemaine = selSemaine.value;
   selSemaine.innerHTML = SEMAINES.map(s =>
-    `<option value="${s.id}" ${semaineActive && s.id === semaineActive.id ? "selected" : ""}>${s.nom}${semaineActive && s.id === semaineActive.id ? " (active)" : ""}</option>`
+    `<option value="${s.id}" ${semaineActive && s.id === semaineActive.id ? "selected" : ""}>${libelleSemaine(s)}${semaineActive && s.id === semaineActive.id ? " (active)" : ""}</option>`
   ).join("") + `<option value="toutes">Toutes les semaines</option>`;
   if (prevSemaine) selSemaine.value = prevSemaine;
 
@@ -225,7 +225,7 @@ function chargerStats() {
     const gSale = acts.reduce((acc, a) => acc + Number(a.argent_sale || 0), 0);
     const gPropre = acts.reduce((acc, a) => acc + Number(a.argent_propre || 0), 0);
     const valActions = isSpecific ? acts.filter(a => a.resultat === "Réussite").reduce((acc, a) => acc + Number(a.quantite || 0), 0) : acts.length;
-    return `<tr><td>${s.nom}</td><td>${valActions}</td><td>${formatMoney(gSale)}</td><td>${formatMoney(gPropre)}</td></tr>`;
+    return `<tr><td>${libelleSemaine(s)}</td><td>${valActions}</td><td>${formatMoney(gSale)}</td><td>${formatMoney(gPropre)}</td></tr>`;
   });
   document.getElementById("tblSemaines").innerHTML = lignesSemaines.length ? lignesSemaines.join("") : '<tr class="empty-row"><td colspan="4">Aucune semaine</td></tr>';
 }

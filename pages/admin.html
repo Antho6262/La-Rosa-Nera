@@ -385,7 +385,7 @@ function renderTabSemaines(body, list) {
       <div class="panel-head"><h2>Semaines</h2></div>
       <table><thead><tr><th>Nom</th><th>Statut</th><th>Créée le</th><th>Verrouillage auto</th><th></th></tr></thead>
         <tbody>${list.length ? list.map(s => `
-          <tr><td>${s.nom}</td><td><span class="badge ${s.bloquee ? 'badge-fail' : 'badge-ok'}">${s.bloquee ? 'Bloquée' : 'Actif'}</span></td>
+          <tr><td>${libelleSemaine(s)}</td><td><span class="badge ${s.bloquee ? 'badge-fail' : 'badge-ok'}">${s.bloquee ? 'Bloquée' : 'Actif'}</span></td>
           <td class="small muted">${s.createdAt ? new Date(s.createdAt).toLocaleString('fr-FR') : '-'}</td>
           <td class="small muted">${s.verrouAt ? new Date(s.verrouAt).toLocaleString('fr-FR') : '—'}</td>
           <td>

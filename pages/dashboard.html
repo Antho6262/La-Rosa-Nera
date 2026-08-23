@@ -164,7 +164,7 @@ function recompute() {
   // semaine active = la plus récente non bloquée, sinon la plus récente
   const list = entries(DATA.semaines).map(([id, s]) => ({ id, ...s })).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
   const week = list.find(s => s.bloquee !== true) || list[0] || null;
-  document.getElementById("weekLabel").textContent = "Semaine active : " + (week ? week.nom : "Aucune semaine") + (week && week.bloquee ? " (bloquée)" : "");
+  document.getElementById("weekLabel").textContent = "Semaine active : " + (week ? libelleSemaine(week) : "Aucune semaine") + (week && week.bloquee ? " (bloquée)" : "");
 
   // si la semaine active a changé, on réabonne le listener temps réel sur le bon nœud actions/{id}
   const newWeekId = week ? week.id : null;
